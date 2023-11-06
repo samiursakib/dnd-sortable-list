@@ -4,7 +4,7 @@ import { SortableContext, verticalListSortingStrategy, arrayMove } from '@dnd-ki
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import dynamic from 'next/dynamic';
 
-const SortableUser = dynamic(() => import('./SortableUser'), {ssr: false});
+const SortableItem = dynamic(() => import('./SortableUser'), {ssr: false});
 
 const Column = ({ state, setState }: ColumnType ) => {
   const handleDragEnd = (event: any) => {
@@ -26,7 +26,7 @@ const Column = ({ state, setState }: ColumnType ) => {
       >
         <DndContext id={id} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
           <SortableContext items={state}>
-            {state.map((t: TaskType) => <SortableUser key={t.id} id={t.id} content={t.content} />)}
+            {state.map((t: TaskType) => <SortableItem key={t.id} id={t.id} content={t.content} />)}
           </SortableContext>
         </DndContext>
       </div>
